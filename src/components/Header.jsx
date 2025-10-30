@@ -4,8 +4,8 @@ import {
   FaSignOutAlt, 
   FaChevronDown, 
   FaBars, 
-  FaBell,  // <-- Tambahkan ini
-  FaSearch // <-- Tambahkan ini
+  FaBell,
+  FaSearch
 } from 'react-icons/fa';
 
 const Header = ({ isSidebarOpen, setIsOpen }) => {
@@ -25,13 +25,10 @@ const Header = ({ isSidebarOpen, setIsOpen }) => {
   }, []);
 
   return (
-    // Kita gunakan z-40 dari perbaikan sebelumnya
     <header className="bg-content-bg shadow-md p-4 sticky top-0 z-40">
       <div className="flex items-center justify-between">
         
-        {/* Bagian Kiri: Tombol Hamburger (Mobile) + Search Bar (Desktop) */}
         <div className="flex items-center">
-          {/* Tombol Hamburger (Hanya Mobile) */}
           <button 
             onClick={() => setIsOpen(!isSidebarOpen)} 
             className="text-text-muted hover:text-text-main focus:outline-none md:hidden mr-4"
@@ -39,7 +36,6 @@ const Header = ({ isSidebarOpen, setIsOpen }) => {
             <FaBars size={24} />
           </button>
 
-          {/* Search Bar (Hanya Desktop) */}
           <div className="relative hidden md:block">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
               <FaSearch className="text-text-subtle" />
@@ -52,18 +48,12 @@ const Header = ({ isSidebarOpen, setIsOpen }) => {
           </div>
         </div>
 
-        {/* Bagian Kanan: Ikon Notifikasi & Profile Dropdown */}
         <div className="flex items-center space-x-4 md:space-x-6">
           
-          {/* Tombol Notifikasi */}
           <button className="text-text-muted hover:text-text-main focus:outline-none relative">
             <FaBell size={22} />
-            {/* Opsional: Badge Notifikasi
-            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
-            */}
           </button>
 
-          {/* Profile Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button 
               onClick={() => setDropdownOpen(!isDropdownOpen)} 

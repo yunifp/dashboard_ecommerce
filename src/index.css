@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-theme-primary: theme(colors.green.600);
-  --color-theme-primary-dark: theme(colors.green.700);
-  --color-theme-primary-light: theme(colors.green.50);
-  
-  --color-app-bg: theme(colors.gray.50);
+  --color-theme-primary: theme(colors.amber.600);
+  --color-theme-primary-dark: theme(colors.amber.700);
+  --color-theme-primary-light: theme(colors.amber.50);
+
+  --color-app-bg: theme(colors.slate.50);
   --color-content-bg: theme(colors.white);
   --color-sidebar-bg: theme(colors.white);
   
-  --color-text-main: theme(colors.gray.900);
-  --color-text-muted: theme(colors.gray.600);
-  --color-text-subtle: theme(colors.gray.400);
+  --color-text-main: theme(colors.slate.800);
+  --color-text-muted: theme(colors.slate.600);
+  --color-text-subtle: theme(colors.slate.400);
 
-  --color-border-main: theme(colors.gray.200);
+  --color-border-main: theme(colors.slate.200);
+
+  --shadow-sm: theme(shadows.sm);
+  --shadow-md: theme(shadows.md);
+  --shadow-lg: theme(shadows.lg);
+  --shadow-xl: theme(shadows.xl);
 }
 
 html {
@@ -24,4 +29,13 @@ body {
   @apply bg-app-bg text-text-main;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button, a, input, select, textarea {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+button:focus, a:focus, input:focus, select:focus, textarea:focus {
+  @apply ring-2 ring-theme-primary ring-opacity-50;
+  outline: none;
 }

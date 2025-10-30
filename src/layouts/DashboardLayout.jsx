@@ -15,11 +15,10 @@ const DashboardLayout = () => {
           isSidebarOpen ? 'md:ml-64' : 'md:ml-20' 
         }`}
       >
-        {/* Tambahkan props ini untuk toggle di mobile */}
         <Header isSidebarOpen={isSidebarOpen} setIsOpen={setSidebarOpen} />
         
         <main 
-          className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6"
+          className="flex-1 overflow-x-hidden overflow-y-auto p-6 md:p-8"
         >
           <Outlet />
         </main>

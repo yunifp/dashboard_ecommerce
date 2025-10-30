@@ -3,8 +3,11 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   FaTachometerAlt, FaBox, FaList, FaTags,
   FaTicketAlt, FaTruck, FaChevronDown,
-  FaBars, FaTimes
+  FaBars,
+  FaUsers,
+  FaHistory
 } from 'react-icons/fa';
+import logo from '../assets/logo.jpg';
 
 const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => {
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => 
       onClick={handleClick}
       className={`relative flex items-center p-3 my-1 rounded-lg transition-all duration-300 group ${isActive
         ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
-        : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
+        : 'text-text-muted hover:bg-slate-100 hover:text-text-main'
         } ${!isOpen ? 'justify-center' : ''} ${isChild ? (isOpen ? 'pl-8' : 'pl-0') : ''}`}
     >
       {isActive && (
@@ -73,7 +76,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
             : isProdukActive && isOpen
               ? 'text-theme-primary-dark'
-              : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
+              : 'text-text-muted hover:bg-slate-100 hover:text-text-main'
             } ${!isOpen ? 'justify-center' : ''}`}
         >
           {isProdukActive && (
@@ -109,28 +112,34 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
       <SidebarLink to="/voucher" icon={<FaTicketAlt size={20} />} text="Voucher" isOpen={isOpen} setIsOpen={setIsOpen} />
       <SidebarLink to="/pengiriman" icon={<FaTruck size={20} />} text="Pengiriman" isOpen={isOpen} setIsOpen={setIsOpen} />
+      
+      <hr className="my-2 border-border-main" />
+      <SidebarLink to="/transaksi" icon={<FaHistory size={20} />} text="Riwayat Transaksi" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/users" icon={<FaUsers size={20} />} text="Manajemen User" isOpen={isOpen} setIsOpen={setIsOpen} />
     </nav>
   );
 
   return (
     <>
       <div
-        className={`fixed inset-0 z-30 bg-transparent md:hidden ${isOpen ? 'block' : 'hidden'}`}
+        className={`fixed inset-0 z-30 bg-black bg-opacity-30 md:hidden ${isOpen ? 'block' : 'hidden'}`}
         onClick={() => setIsOpen(false)}
       ></div>
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-content-bg text-text-main shadow-2xl transform transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
+        className={`fixed inset-y-0 left-0 z-40 flex flex-col bg-content-bg text-text-main shadow-2xl transform transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
           }`}
       >
         <div className={`relative flex items-center justify-between h-20 ${isOpen ? 'px-6' : 'px-0 justify-center'}`}>
-          <span className={`text-theme-primary text-2xl font-bold flex items-center transition-all duration-300 ${isOpen ? 'opacity-100' : 'md:opacity-0 md:w-0'}`}>
-            Outdoor
-          </span>
+          <img 
+            src={logo} 
+            alt="Dashboard Logo" 
+            className={`transition-all duration-300 ${isOpen ? 'h-10 opacity-100' : 'h-0 opacity-0'}`} 
+          />
 
           <button
             onClick={() => setIsOpen(false)}
-            className="text-text-muted hover:text-text-main md:hidden"
+            className="text-text-muted hover:text-text-main md:hidden absolute top-7 right-4"
           >
             <FaBars size={24} />
           </button>
