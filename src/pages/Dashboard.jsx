@@ -12,7 +12,7 @@ const Dashboard = () => {
           <p className="text-3xl font-bold text-theme-primary-dark mt-2">Rp 12.500.000</p>
         </div>
         <div className="bg-content-bg p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-medium text-text-muted">Pesanan Baru</h3>
+          <h3 className="text-lg font-medium text-text-muted">Transaksi</h3>
           <p className="text-3xl font-bold text-theme-primary-dark mt-2">32</p>
         </div>
         <div className="bg-content-bg p-6 rounded-lg shadow-md">
@@ -20,7 +20,7 @@ const Dashboard = () => {
           <p className="text-3xl font-bold text-theme-primary-dark mt-2">124</p>
         </div>
         <div className="bg-content-bg p-6 rounded-lg shadow-md">
-          <h3 className="text-lg font-medium text-text-muted">Pengguna</h3>
+          <h3 className="text-lg font-medium text-text-muted">Pengiriman</h3>
           <p className="text-3xl font-bold text-theme-primary-dark mt-2">78</p>
         </div>
       </div>

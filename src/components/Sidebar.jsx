@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { 
-  FaTachometerAlt, FaBox, FaList, FaTags, 
+import {
+  FaTachometerAlt, FaBox, FaList, FaTags,
   FaTicketAlt, FaTruck, FaChevronDown,
-  FaBars
+  FaBars, FaTimes
 } from 'react-icons/fa';
 
 const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => {
@@ -22,11 +22,10 @@ const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => 
     <NavLink
       to={to}
       onClick={handleClick}
-      className={`relative flex items-center p-3 my-1 rounded-lg transition-all duration-300 group ${
-        isActive
-          ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
-          : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
-      } ${!isOpen ? 'justify-center' : ''} ${isChild ? (isOpen ? 'pl-8' : 'pl-0') : ''}`}
+      className={`relative flex items-center p-3 my-1 rounded-lg transition-all duration-300 group ${isActive
+        ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
+        : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
+        } ${!isOpen ? 'justify-center' : ''} ${isChild ? (isOpen ? 'pl-8' : 'pl-0') : ''}`}
     >
       {isActive && (
         <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-theme-primary rounded-r-full"></span>
@@ -64,19 +63,18 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   };
 
   const renderNavContent = () => (
-    <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
+    <nav className={`flex-1 px-3 py-4 space-y-2 overflow-x-hidden ${isOpen ? 'overflow-y-auto' : 'overflow-y-hidden'}`}>
       <SidebarLink to="/" icon={<FaTachometerAlt size={20} />} text="Dashboard" isOpen={isOpen} setIsOpen={setIsOpen} />
-      
+
       <div>
         <button
           onClick={handleProdukClick}
-          className={`relative flex items-center justify-between w-full p-3 my-1 rounded-lg transition-all duration-300 group ${
-            isProdukActive && !isOpen 
-              ? 'bg-theme-primary-light text-theme-primary-dark font-medium' 
+          className={`relative flex items-center justify-between w-full p-3 my-1 rounded-lg transition-all duration-300 group ${isProdukActive && !isOpen
+            ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
             : isProdukActive && isOpen
               ? 'text-theme-primary-dark'
               : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
-          } ${!isOpen ? 'justify-center' : ''}`}
+            } ${!isOpen ? 'justify-center' : ''}`}
         >
           {isProdukActive && (
             <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-theme-primary rounded-r-full"></span>
@@ -98,7 +96,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             </span>
           )}
         </button>
-        
+
         <div className={`transition-all duration-300 overflow-hidden ${isProdukOpen && isOpen ? 'max-h-40' : 'max-h-0'}`}>
           {isOpen && (
             <div className="pl-4 border-l-2 border-border-main ml-5">
@@ -108,7 +106,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           )}
         </div>
       </div>
-      
+
       <SidebarLink to="/voucher" icon={<FaTicketAlt size={20} />} text="Voucher" isOpen={isOpen} setIsOpen={setIsOpen} />
       <SidebarLink to="/pengiriman" icon={<FaTruck size={20} />} text="Pengiriman" isOpen={isOpen} setIsOpen={setIsOpen} />
     </nav>
@@ -116,24 +114,28 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      <div 
-        className={`fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden ${isOpen ? 'block' : 'hidden'}`} 
+      <div
+        className={`fixed inset-0 z-30 bg-transparent md:hidden ${isOpen ? 'block' : 'hidden'}`}
         onClick={() => setIsOpen(false)}
       ></div>
-      
+
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-content-bg text-text-main shadow-2xl transform transition-all duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
-        }`}
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col bg-content-bg text-text-main shadow-2xl transform transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
+          }`}
       >
-        <div className={`relative flex items-center justify-between h-20 shadow-sm ${isOpen ? 'px-6' : 'px-0 justify-center'}`}>
+        <div className={`relative flex items-center justify-between h-20 ${isOpen ? 'px-6' : 'px-0 justify-center'}`}>
           <span className={`text-theme-primary text-2xl font-bold flex items-center transition-all duration-300 ${isOpen ? 'opacity-100' : 'md:opacity-0 md:w-0'}`}>
             Outdoor
           </span>
-          
-          {/* Logo "O" DIHAPUS DARI SINI */}
 
-          <button 
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-text-muted hover:text-text-main md:hidden"
+          >
+            <FaBars size={24} />
+          </button>
+
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className={`hidden md:block absolute top-6 text-theme-primary hover:text-theme-primary-dark transition-all duration-300
               ${isOpen ? 'right-4' : 'left-1/2 -translate-x-1/2'}
@@ -142,7 +144,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             <FaBars size={20} />
           </button>
         </div>
-        
+
         {renderNavContent()}
       </aside>
     </>
