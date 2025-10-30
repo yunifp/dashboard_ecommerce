@@ -11,9 +11,9 @@ const formatCurrency = (amount) => {
 
 const StatusBadge = ({ status }) => {
   const statusStyles = {
-    sukses: 'bg-green-100 text-green-800',
+    sukses: 'bg-theme-primary-light text-theme-primary-dark',
     gagal: 'bg-red-100 text-red-800',
-    dikirim: 'bg-blue-100 text-blue-800',
+    dikirim: 'bg-orange-100 text-orange-800',
   };
   return (
     <span className={`px-3 py-1 text-sm font-medium rounded-full ${statusStyles[status]}`}>
@@ -29,7 +29,7 @@ const TransactionDetailModal = ({ isOpen, onClose, transaction }) => {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-white/20"
       onClick={onClose}
     >
       <div 
@@ -43,7 +43,7 @@ const TransactionDetailModal = ({ isOpen, onClose, transaction }) => {
           </div>
           <button 
             onClick={onClose} 
-            className="text-text-muted hover:text-text-main p-1 rounded-full hover:bg-slate-100"
+            className="text-text-muted hover:text-text-main p-1 rounded-full hover:bg-gray-100"
           >
             <FaTimes size={24} />
           </button>
@@ -51,15 +51,15 @@ const TransactionDetailModal = ({ isOpen, onClose, transaction }) => {
 
         <div className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-slate-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h4 className="text-sm font-medium text-text-muted">Status</h4>
               <StatusBadge status={transaction.status} />
             </div>
-            <div className="bg-slate-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h4 className="text-sm font-medium text-text-muted">Tanggal</h4>
               <p className="text-text-main font-medium">{transaction.date}</p>
             </div>
-            <div className="bg-slate-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h4 className="text-sm font-medium text-text-muted">No. Resi</h4>
               <p className="text-text-main font-medium">{transaction.resi}</p>
             </div>

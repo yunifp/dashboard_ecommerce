@@ -25,7 +25,7 @@ const Header = ({ isSidebarOpen, setIsOpen }) => {
   }, []);
 
   return (
-    <header className="bg-content-bg shadow-md p-4 sticky top-0 z-40">
+    <header className="bg-content-bg shadow-sm p-4 sticky top-0 z-40 border-b border-border-main">
       <div className="flex items-center justify-between">
         
         <div className="flex items-center">

@@ -47,7 +47,7 @@ const RiwayatTransaksi = () => {
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-border-main">
-          <thead className="bg-slate-50">
+          <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-text-muted uppercase tracking-wider">Order ID</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-text-muted uppercase tracking-wider">Tanggal</th>
@@ -60,14 +60,14 @@ const RiwayatTransaksi = () => {
             {data.map((tx) => (
               <tr 
                 key={tx.id} 
-                className="hover:bg-slate-50 cursor-pointer"
+                className="hover:bg-gray-50 cursor-pointer"
                 onClick={() => handleRowClick(tx)}
               >
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-theme-primary">{tx.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-text-muted">{tx.date}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-text-main">{tx.customer.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-main">{formatCurrency(tx.total)}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-text-muted">{tx.resi}</td>
+                <td className="px-6 py-4 whitespace-nowMrap text-sm text-text-muted">{tx.resi}</td>
               </tr>
             ))}
           </tbody>
@@ -78,7 +78,7 @@ const RiwayatTransaksi = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-semibold text-text-main mb-6">
+      <h1 className="text-3xl font-bold text-text-main mb-6">
         Riwayat Transaksi
       </h1>
 
@@ -92,7 +92,7 @@ const RiwayatTransaksi = () => {
                 className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${
                   activeTab === tab.key
                     ? 'border-theme-primary text-theme-primary'
-                    : 'border-transparent text-text-muted hover:text-text-main hover:border-slate-300'
+                    : 'border-transparent text-text-muted hover:text-text-main hover:border-gray-300'
                 }`}
               >
                 {tab.label} ({mockTransactions[tab.key].length})

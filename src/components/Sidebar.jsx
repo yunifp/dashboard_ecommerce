@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
-  FaTachometerAlt, FaBox, FaList, FaTags,
-  FaTicketAlt, FaTruck, FaChevronDown,
-  FaBars,
-  FaUsers,
-  FaHistory
-} from 'react-icons/fa';
+  BsGrid,
+  BsBoxSeam,
+  BsListUl,
+  BsTag,
+  BsTicketPerforated,
+  BsTruck,
+  BsChevronDown,
+  BsList as FaBars,
+  BsPeople,
+  BsClockHistory
+} from 'react-icons/bs';
 import logo from '../assets/logo.jpg';
 
 const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => {
@@ -26,13 +31,10 @@ const SidebarLink = ({ to, icon, text, isOpen, setIsOpen, isChild = false }) => 
       to={to}
       onClick={handleClick}
       className={`relative flex items-center p-3 my-1 rounded-lg transition-all duration-300 group ${isActive
-        ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
-        : 'text-text-muted hover:bg-slate-100 hover:text-text-main'
+        ? 'bg-theme-primary text-white font-medium shadow-sm'
+        : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
         } ${!isOpen ? 'justify-center' : ''} ${isChild ? (isOpen ? 'pl-8' : 'pl-0') : ''}`}
     >
-      {isActive && (
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-theme-primary rounded-r-full"></span>
-      )}
       {icon}
       <span className={`transition-opacity duration-200 ${isOpen ? 'ml-4 opacity-100' : 'opacity-0 w-0 h-0 overflow-hidden'}`}>{text}</span>
 
@@ -67,27 +69,24 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const renderNavContent = () => (
     <nav className={`flex-1 px-3 py-4 space-y-2 overflow-x-hidden ${isOpen ? 'overflow-y-auto' : 'overflow-y-hidden'}`}>
-      <SidebarLink to="/" icon={<FaTachometerAlt size={20} />} text="Dashboard" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/" icon={<BsGrid size={20} />} text="Dashboard" isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <div>
         <button
           onClick={handleProdukClick}
           className={`relative flex items-center justify-between w-full p-3 my-1 rounded-lg transition-all duration-300 group ${isProdukActive && !isOpen
-            ? 'bg-theme-primary-light text-theme-primary-dark font-medium'
+            ? 'bg-theme-primary text-white font-medium'
             : isProdukActive && isOpen
-              ? 'text-theme-primary-dark'
-              : 'text-text-muted hover:bg-slate-100 hover:text-text-main'
+              ? 'text-theme-primary-dark font-medium'
+              : 'text-text-muted hover:bg-gray-100 hover:text-text-main'
             } ${!isOpen ? 'justify-center' : ''}`}
         >
-          {isProdukActive && (
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-theme-primary rounded-r-full"></span>
-          )}
           <div className="flex items-center">
-            <FaBox size={20} />
+            <BsBoxSeam size={20} />
             <span className={`transition-opacity duration-200 ${isOpen ? 'ml-4 opacity-100' : 'opacity-0 w-0 h-0 overflow-hidden'}`}>Produk</span>
           </div>
           {isOpen && (
-            <FaChevronDown
+            <BsChevronDown
               size={16}
               className={`transition-transform duration-300 ${isProdukOpen ? 'rotate-180' : ''}`}
             />
@@ -102,20 +101,20 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
         <div className={`transition-all duration-300 overflow-hidden ${isProdukOpen && isOpen ? 'max-h-40' : 'max-h-0'}`}>
           {isOpen && (
-            <div className="pl-4 border-l-2 border-border-main ml-5">
-              <SidebarLink to="/produk" icon={<FaList size={18} />} text="List Produk" isOpen={isOpen} setIsOpen={setIsOpen} isChild={true} />
-              <SidebarLink to="/kategori" icon={<FaTags size={18} />} text="Kategori" isOpen={isOpen} setIsOpen={setIsOpen} isChild={true} />
+            <div className="pl-4 border-l-2 border-gray-200 ml-5">
+              <SidebarLink to="/produk" icon={<BsListUl size={18} />} text="List Produk" isOpen={isOpen} setIsOpen={setIsOpen} isChild={true} />
+              <SidebarLink to="/kategori" icon={<BsTag size={18} />} text="Kategori" isOpen={isOpen} setIsOpen={setIsOpen} isChild={true} />
             </div>
           )}
         </div>
       </div>
 
-      <SidebarLink to="/voucher" icon={<FaTicketAlt size={20} />} text="Voucher" isOpen={isOpen} setIsOpen={setIsOpen} />
-      <SidebarLink to="/pengiriman" icon={<FaTruck size={20} />} text="Pengiriman" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/voucher" icon={<BsTicketPerforated size={20} />} text="Voucher" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/pengiriman" icon={<BsTruck size={20} />} text="Pengiriman" isOpen={isOpen} setIsOpen={setIsOpen} />
       
       <hr className="my-2 border-border-main" />
-      <SidebarLink to="/transaksi" icon={<FaHistory size={20} />} text="Riwayat Transaksi" isOpen={isOpen} setIsOpen={setIsOpen} />
-      <SidebarLink to="/users" icon={<FaUsers size={20} />} text="Manajemen User" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/transaksi" icon={<BsClockHistory size={20} />} text="Riwayat Transaksi" isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SidebarLink to="/users" icon={<BsPeople size={20} />} text="Manajemen User" isOpen={isOpen} setIsOpen={setIsOpen} />
     </nav>
   );
 
@@ -127,7 +126,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       ></div>
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex flex-col bg-content-bg text-text-main shadow-2xl transform transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
+        className={`fixed inset-y-0 left-0 z-40 flex flex-col bg-content-bg text-text-main shadow-lg transform transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0 w-64' : '-translate-x-full w-64 md:translate-x-0 md:w-20'
           }`}
       >
         <div className={`relative flex items-center justify-between h-20 ${isOpen ? 'px-6' : 'px-0 justify-center'}`}>

@@ -4,13 +4,15 @@ import { FaDollarSign, FaReceipt, FaBoxOpen, FaTruck } from 'react-icons/fa';
 const StatCard = ({ icon, title, value, color }) => {
   const IconComponent = icon;
   return (
-    <div className="bg-content-bg p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex items-start space-x-4">
-      <div className={`p-3 rounded-full bg-opacity-10 ${color.bg} ${color.text}`}>
-        <IconComponent size={24} />
-      </div>
-      <div>
-        <h3 className="text-lg font-medium text-text-muted">{title}</h3>
-        <p className={`text-3xl font-bold ${color.text} mt-1`}>{value}</p>
+    <div className="bg-content-bg p-5 rounded-xl shadow-lg shadow-gray-100/50 border border-gray-100">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-sm font-semibold text-text-muted uppercase tracking-wider">{title}</h3>
+          <p className={`text-3xl font-bold text-text-main mt-1 ${color.text}`}>{value}</p>
+        </div>
+        <div className={`p-3 rounded-lg ${color.bg} ${color.text}`}>
+          <IconComponent size={22} />
+        </div>
       </div>
     </div>
   );
@@ -19,7 +21,7 @@ const StatCard = ({ icon, title, value, color }) => {
 const Dashboard = () => {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-text-main mb-6">
+      <h1 className="text-4xl font-bold text-text-main mb-6">
         Dashboard
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -27,7 +29,7 @@ const Dashboard = () => {
           icon={FaDollarSign} 
           title="Total Penjualan" 
           value="Rp 12.5jt" 
-          color={{ text: 'text-theme-primary-dark', bg: 'bg-theme-primary' }}
+          color={{ text: 'text-theme-primary', bg: 'bg-theme-primary-light' }}
         />
         <StatCard 
           icon={FaReceipt} 
@@ -50,13 +52,13 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-content-bg p-6 rounded-lg shadow-md">
+        <div className="lg:col-span-2 bg-content-bg p-6 rounded-xl shadow-lg shadow-gray-100/50 border border-gray-100">
           <h3 className="text-xl font-semibold mb-4">Grafik Penjualan</h3>
-          <div className="h-64 bg-slate-100 rounded-lg flex items-center justify-center text-text-muted">
+          <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center text-text-muted">
             Chart akan tampil di sini
           </div>
         </div>
-        <div className="bg-content-bg p-6 rounded-lg shadow-md">
+        <div className="bg-content-bg p-6 rounded-xl shadow-lg shadow-gray-100/50 border border-gray-100">
           <h3 className="text-xl font-semibold mb-4">Produk Terlaris</h3>
           <ul className="space-y-3">
             <li className="flex justify-between items-center">
